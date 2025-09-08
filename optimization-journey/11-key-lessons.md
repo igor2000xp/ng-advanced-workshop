@@ -28,4 +28,4 @@
    - Regular context window assessments reveal optimization opportunities
    - Context monitoring enables dynamic adjustments
    - Minimal mode provides fallback for extreme constraints
-   - Context-aware process scaling adapts to available resources 
+   - Context-aware process scaling adapts to available resources

@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
-import {Country, State} from './types';
-import {FormControl} from '@angular/forms';
-import {CountryService} from './country.service';
-import {map, withLatestFrom} from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
+import { CountryService } from './country.service';
+import { Country, State } from './types';
 
 @Component({
   selector: 'app-exercise4',
   templateUrl: './exercise4.component.html',
-  styleUrls: ['./exercise4.component.css']
+  styleUrls: ['./exercise4.component.css'],
 })
 export class Exercise4Component {
-
   countries$: Observable<Country[]>;
   states$!: Observable<State[]>;
   state!: State;
@@ -21,7 +20,8 @@ export class Exercise4Component {
     this.countries$ = this.countryControl.valueChanges.pipe(
       withLatestFrom(this.service.getCountries()),
       map(([userInput, countries]) =>
-        countries.filter(c => c.description.toLowerCase().indexOf((userInput ?? "").toLowerCase()) !== -1))
+        countries.filter((c) => c.description.toLowerCase().indexOf((userInput ?? '').toLowerCase()) !== -1),
+      ),
     );
   }
 

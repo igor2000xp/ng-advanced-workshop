@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import {Observable} from 'rxjs';
-import {Country, State} from './types';
-import {CountryService} from './country.service';
-import {FormControl} from '@angular/forms';
-import {map, withLatestFrom} from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
+import { CountryService } from './country.service';
+import { Country, State } from './types';
 
 @Component({
   selector: 'app-solution3',
   templateUrl: './solution3.component.html',
-  styleUrls: ['./solution3.component.css']
+  styleUrls: ['./solution3.component.css'],
 })
 export class Solution3Component {
-
   countries$: Observable<Country[]>;
   states$: Observable<State[]>;
   state: State;
@@ -20,7 +19,9 @@ export class Solution3Component {
   constructor(private service: CountryService) {
     this.countries$ = this.countryControl.valueChanges.pipe(
       withLatestFrom(this.service.getCountries()),
-      map(([userInput, countries]) => countries.filter(c => c.description.toLowerCase().indexOf(userInput.toLowerCase()) !== -1))
+      map(([userInput, countries]) =>
+        countries.filter((c) => c.description.toLowerCase().indexOf(userInput.toLowerCase()) !== -1),
+      ),
     );
   }
 
