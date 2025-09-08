@@ -1,16 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {combineLatest, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {FormControl} from '@angular/forms';
-import {DropdownOption} from '../types';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { DropdownOption } from '../types';
 
 @Component({
   selector: 'app-autofilter-dropdown',
   templateUrl: './autofilter-dropdown.component.html',
-  styleUrls: ['./autofilter-dropdown.component.css']
+  styleUrls: ['./autofilter-dropdown.component.css'],
 })
 export class AutofilterDropdownComponent<T extends DropdownOption> implements OnInit {
-
   @Input()
   entries$: Observable<T[]>;
 
@@ -34,7 +33,9 @@ export class AutofilterDropdownComponent<T extends DropdownOption> implements On
 
   ngOnInit() {
     this.filteredEntries$ = combineLatest([this.entryControl.valueChanges, this.entries$]).pipe(
-      map(([userInput, entries]) => entries.filter(c => c.description.toLowerCase().indexOf(userInput.toLowerCase()) !== -1))
+      map(([userInput, entries]) =>
+        entries.filter((c) => c.description.toLowerCase().indexOf(userInput.toLowerCase()) !== -1),
+      ),
     );
   }
 

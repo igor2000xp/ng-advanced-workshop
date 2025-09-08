@@ -1,23 +1,27 @@
 <h2>Solution 4</h2>
 <h2>Result</h2>
-<div >
+<div>
   <div class="dropdown">
-    <input type="text" class="dropbtn" [formControl]="countryControl"
-           placeholder="Enter country name" >
+    <input type="text" class="dropbtn" [formControl]="countryControl" placeholder="Enter country name" />
     <div class="dropdown-content">
-      <span *ngFor="let country of countries$ | async" (click)="updateStates(country)"
-            [innerHTML]="country.description | highlight: countryControl.value">
+      <span
+        *ngFor="let country of countries$ | async"
+        (click)="updateStates(country)"
+        [innerHTML]="country.description | highlight: countryControl.value"
+      >
       </span>
     </div>
   </div>
 </div>
-<div >
+<div>
   <div class="dropdown">
-    <input type="text" class="dropbtn" [formControl]="stateControl"
-           placeholder="Enter your state">
+    <input type="text" class="dropbtn" [formControl]="stateControl" placeholder="Enter your state" />
     <div class="dropdown-content">
-      <span *ngFor="let s of states$ | async" (click)="stateControl.setValue(s.description)"
-            [innerHTML]="s.description | titlecase | highlight: stateControl.value">
+      <span
+        *ngFor="let s of states$ | async"
+        (click)="stateControl.setValue(s.description)"
+        [innerHTML]="s.description | titlecase | highlight: stateControl.value"
+      >
       </span>
     </div>
   </div>

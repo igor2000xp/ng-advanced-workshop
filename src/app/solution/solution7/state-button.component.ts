@@ -1,15 +1,14 @@
-import {Component, HostListener, Input} from '@angular/core';
-import {Observable} from 'rxjs';
+import { Component, HostListener, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 type State = 'initial' | 'working' | 'done';
 
 @Component({
   selector: 'app-state-button',
   templateUrl: './state-button.component.html',
-  styleUrls: ['./state-button.component.css']
+  styleUrls: ['./state-button.component.css'],
 })
 export class StateButtonComponent<T> {
-
   @Input()
   action: Observable<T>;
 
@@ -18,6 +17,6 @@ export class StateButtonComponent<T> {
   @HostListener('click')
   triggerAction() {
     this.state = 'working';
-    this.action.subscribe(() => this.state = 'done');
+    this.action.subscribe(() => (this.state = 'done'));
   }
 }

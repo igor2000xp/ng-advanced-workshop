@@ -28,4 +28,4 @@
    - Mode-specific containment reduces interference
    - Clean separation of concerns through specialized modes
    - Preserved global rule space for future extensibility
-   - Enhanced modularity through strict isolation 
+   - Enhanced modularity through strict isolation

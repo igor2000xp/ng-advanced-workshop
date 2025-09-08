@@ -12,7 +12,8 @@ The Memory Bank System was designed to overcome a fundamental limitation of LLMs
 - Documentation creation and maintenance rules
 
 While effective, the initial system had several opportunities for optimization:
+
 - Verbose documentation requiring significant context window space
 - Rigid structures that were sometimes cumbersome
 - Redundancies across multiple files
-- Heavy maintenance overhead 
+- Heavy maintenance overhead
