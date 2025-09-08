@@ -1,4 +1,4 @@
-<h2>Exercise 1</h2>
+<h2>Exercise 1 my 02-1</h2>
 <h3>Your mission is to turn the following dropdown into a country-selection dropdown. </h3>
 <img src="assets/exercise1.gif" />
 <ol>
@@ -13,11 +13,38 @@
 <h2>Result</h2>
 <!-- Edit the code down below to implement the requested features -->
 <div>
-  <div>Select one of 0 countries:</div>
-  <select>
-    <option>
-      United States
-    </option>
-  </select>
-  <div>Current value: US</div>
+  <div>Select one of {{ (countries$ | async)?.length - 1 || 0 }} countries:</div>
+  <!-- <div>Select one of {{ countries$ | async | json }} countries:</div> -->
+
 </div>
+<div>
+  <ng-container *ngTemplateOutlet="countryTemplate"></ng-container>
+</div>
+
+<ng-template #countryTemplate>
+  <select>
+    <option disabled value="sel">--Select a another country--</option>
+    <option>US</option>
+    <option selected>CA</option>
+    <option>UK</option>
+    <option>AU</option>
+    <option>NZ</option>
+  </select>
+
+</ng-template>
+
+  <ng-container *ngIf="countries$ | async as countries">
+     <select [formControl]="mySelectControl" *ngIf="countries.length > 0">
+       <option value="" disabled>--Select a country--</option>
+       <option *ngFor="let country of countries" [value]="country.id">
+        {{country.description}}
+       </option>
+     </select>
+     <div>Current value: {{ mySelectControl.value }}</div>
+     <div>Current value-2: {{ getSelectedCountry(countries) }}</div>
+     <!-- <div>Current value: {{countryName.value}}</div> -->
+
+  </ng-container>
+
+
+
