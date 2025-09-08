@@ -16,11 +16,18 @@
 </h4>
 <hr />
 <h2>Result</h2>
+
 <!-- Edit the code down below to implement the requested features -->
-<div>
-  <div>Select one of 0 countries:</div>
-  <select>
-    <option>United States</option>
-  </select>
-  <div>Current value: US</div>
-</div>
+<ng-container *ngIf='countries$ | async as countries'>
+  <div>Select one of {{countries.length}} countries:</div>
+  <ng-container *ngIf="countries.length > 0">
+    <select [formControl]="countriesControl">
+      <option disabled [value]="'select coutry'">--Select the country--</option>
+      <option *ngFor="let country of countries; trackBy: trackByCountryId" [value]="country.id">
+        {{country.description}}
+      </option>
+    </select>
+  </ng-container>
+  <div>Current value: {{countriesControl.value}}</div>
+  <div>Current value: {{currentCountry$ | async }}</div>
+</ng-container>
