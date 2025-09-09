@@ -43,11 +43,16 @@
       type="text"
       class="dropbtn"
       [value]="state?.description"
-      [disabled]="states.length == 0"
+      [formControl]="stateControl"
       placeholder="Enter your state"
-    />
+      />
+      <!-- [disabled]="states.length == 0" -->
     <div class="dropdown-content">
-      <span *ngFor="let s of states" (click)="state = s">{{ s.description | titlecase }}</span>
+      <span
+        *ngFor="let s of states"
+        [innerHtml]="s.description | titlecase | highlight: stateControl.value"
+        (click)="state = s"
+      ></span>
     </div>
   </div>
 </div>
