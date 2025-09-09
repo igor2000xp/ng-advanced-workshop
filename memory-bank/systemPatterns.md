@@ -3,6 +3,7 @@
 ## Architectural Patterns
 
 ### Component Architecture
+
 1. **Feature-based Organization**
    - Each exercise is a separate feature module
    - Solutions are isolated in dedicated directories
@@ -15,6 +16,7 @@
    - Content projection
 
 ### Data Flow Patterns
+
 1. **Reactive Patterns**
    - Observable streams
    - RxJS operators
@@ -28,6 +30,7 @@
    - Custom validation
 
 ### Design Patterns
+
 1. **Service Pattern**
    - Country service implementation
    - Data fetching and manipulation
@@ -47,6 +50,7 @@
    - Content projection slots
 
 ## Implementation Guidelines
+
 1. **Code Organization**
    - Consistent file naming
    - Feature-based directory structure

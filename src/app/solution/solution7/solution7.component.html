@@ -1,18 +1,18 @@
 <h2>Solution 7</h2>
 <h2>Result</h2>
-<div >
-  <app-state-button [action]="action$">
-    <button default>Save</button>
-    <button working><img src='assets/loader.gif'/></button>
-    <button done>Saved!</button>
-  </app-state-button>
-
-</div>
-<br> <br>
 <div>
   <app-state-button [action]="action$">
-    <a default href="javascript:" >Save from a link</a>
-    <img working src='assets/loader.gif'/>
+    <button default>Save</button>
+    <button working><img src="assets/loader.gif" /></button>
+    <button done>Saved!</button>
+  </app-state-button>
+</div>
+<br />
+<br />
+<div>
+  <app-state-button [action]="action$">
+    <a default href="javascript:">Save from a link</a>
+    <img working src="assets/loader.gif" />
     <h4 done>Done!</h4>
   </app-state-button>
 </div>

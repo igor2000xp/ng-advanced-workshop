@@ -1,18 +1,20 @@
 <h2>Solution 5</h2>
 <h2>Result</h2>
-<div >
-  <app-autofilter-dropdown [entries$]="countries$" (selectionChange)="updateStates($event)"
-                           placeholder="Enter your country">
-  </app-autofilter-dropdown>
-</div>
-<div >
-  <app-autofilter-dropdown [entries$]="statesForCountry$" [(selection)]="state"
-                           placeholder="Enter your state">
-  </app-autofilter-dropdown>
-</div>
-<hr>
 <div>
-  Current selection<br>
-  Country: {{country | json}} <br>
-  State: {{state | json}}
+  <app-autofilter-dropdown
+    [entries$]="countries$"
+    (selectionChange)="updateStates($event)"
+    placeholder="Enter your country"
+  >
+  </app-autofilter-dropdown>
+</div>
+<div>
+  <app-autofilter-dropdown [entries$]="statesForCountry$" [(selection)]="state" placeholder="Enter your state">
+  </app-autofilter-dropdown>
+</div>
+<hr />
+<div>
+  Current selection<br />
+  Country: {{ country | json }} <br />
+  State: {{ state | json }}
 </div>
