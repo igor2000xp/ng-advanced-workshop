@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { combineLatest, map, Observable, startWith, switchMap, tap } from 'rxjs';
+import { combineLatest, map, Observable, startWith, switchMap } from 'rxjs';
 import { CountryService } from './country.service';
 import { Country, State } from './types';
 
@@ -18,15 +18,17 @@ export class Exercise2Component {
 
   currentCountry$ = combineLatest([
     this.countries$,
-    this.countryDropdown.valueChanges.pipe(startWith(this.countryDropdown.value))
-  ]).pipe(map(([countries, countryID]) => {
-    return countries.find((c) => c.id === countryID)?.id;
-  }));
+    this.countryDropdown.valueChanges.pipe(startWith(this.countryDropdown.value)),
+  ]).pipe(
+    map(([countries, countryID]) => {
+      return countries.find((c) => c.id === countryID)?.id;
+    }),
+  );
 
   statesList$ = this.currentCountry$.pipe(
     switchMap((countryID) => {
       return this.service.getStates(countryID);
-    })
+    }),
   );
 
   trackById(index: number, state: State) {
@@ -34,5 +36,4 @@ export class Exercise2Component {
   }
 
   constructor(private service: CountryService) {}
-
 }

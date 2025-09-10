@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { lastValueFrom, map, Observable, withLatestFrom } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { map, Observable, withLatestFrom } from 'rxjs';
 import { CountryService } from './country.service';
 import { Country, State } from './types';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-exercise3',
@@ -15,13 +15,15 @@ export class Exercise3Component {
   country!: Country;
   state!: State;
 
-  countryControl = new FormControl<string>('', {nonNullable: true});
-  stateControl = new FormControl<string>('', {nonNullable: true});
+  countryControl = new FormControl<string>('', { nonNullable: true });
+  stateControl = new FormControl<string>('', { nonNullable: true });
   countries$ = this.countryControl.valueChanges.pipe(
     withLatestFrom(this.service.getCountries()),
-    map(([userInput, countries]) => countries.filter((c) => {
-      return c.description.toLocaleLowerCase().indexOf(userInput.toLowerCase()) !== -1;
-    }))
+    map(([userInput, countries]) =>
+      countries.filter((c) => {
+        return c.description.toLocaleLowerCase().indexOf(userInput.toLowerCase()) !== -1;
+      }),
+    ),
   );
 
   constructor(private service: CountryService) {}

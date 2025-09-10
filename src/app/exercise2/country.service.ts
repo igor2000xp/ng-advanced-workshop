@@ -9,7 +9,7 @@ import { Country, State } from './types';
 export class CountryService {
   private countries$: Observable<Country[]>;
   private state$: Observable<State[]>;
-  private API_STATE ='http://localhost:3000/states?countryCode=';
+  private API_STATE = 'http://localhost:3000/states?countryCode=';
 
   constructor(private http: HttpClient) {
     this.countries$ = http.get<Country[]>('http://localhost:3000/countries');

@@ -8,4 +8,4 @@ export interface State {
   code: string;
   countryCode: string;
   description: string;
-  }
+}

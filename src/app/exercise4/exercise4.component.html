@@ -40,13 +40,13 @@
 <div *ngIf="states$ | async as states">
   <div class="dropdown">
     <input
-    [formControl]="stateControl"
+      [formControl]="stateControl"
       type="text"
       class="dropbtn"
       [value]="state?.description"
       placeholder="Enter your state"
-      />
-      <!-- [disabled]="states.length == 0" -->
+    />
+
     <div class="dropdown-content">
       <span
         *ngFor="let s of states"

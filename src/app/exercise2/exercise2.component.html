@@ -33,17 +33,14 @@
   <div>Current value: {{ countryDropdown.value }}</div>
 </div>
 
-
 <ng-container *ngIf="statesList$ | async as statesList">
   <ng-container *ngIf="statesList.length > 0">
-    <div>Select one of {{statesList.length}} states/provinces:</div>
+    <div>Select one of {{ statesList.length }} states/provinces:</div>
     <select #stateDropdownVal [formControl]="statesDropdown">
       <option disabled value="">--Select the State--</option>
-      <option [value]="state.code" *ngFor="let state of statesList; trackBy: trackById">{{state.description}}</option>
+      <option [value]="state.code" *ngFor="let state of statesList; trackBy: trackById">{{ state.description }}</option>
     </select>
     <!-- <div>Current value: {{ statesDropdown.value }}</div> -->
     <div>Current value: {{ stateDropdownVal.value }}</div>
-
   </ng-container>
-
 </ng-container>
