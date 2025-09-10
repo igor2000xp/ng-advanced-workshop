@@ -1,0 +1,156 @@
+# NgAdvancedWorkshop Rules
+
+## Core Angular Rules
+
+### Component Development
+1. MUST use standalone components
+   - No NgModules except root module
+   - Default to `standalone: true`
+   - Import dependencies directly in component
+   - Use `bootstrapApplication` for standalone setup
+
+2. MUST use signals for state management
+   - Local state with `signal()`
+   - Derived state with `computed()`
+   - Avoid direct mutation with `mutate`
+   - Use `update` or `set` for state changes
+   - Always invoke signals in templates with `()`
+   - Keep signal transformations pure
+
+3. MUST use modern template syntax
+   - Use `@if` instead of `*ngIf`
+   - Use `@for` instead of `*ngFor`
+   - Use `@switch` instead of `*ngSwitch`
+   - Use `class` bindings instead of `ngClass`
+   - Use `style` bindings instead of `ngStyle`
+   - Always use trackBy with `@for` loops
+   - Use safe navigation operator (`?.`) for optional chains
+
+4. MUST follow component best practices
+   - Use `input()` and `output()` functions
+   - Set `changeDetection: ChangeDetectionStrategy.OnPush`
+   - Keep templates simple and focused
+   - Use inline templates for small components
+   - Avoid method calls in templates
+   - Use strict input types (union types over string)
+   - Cache expensive computations
+   - Use `NgOptimizedImage` for images
+
+### Service Patterns
+1. MUST use dependency injection best practices
+   - Use `providedIn: 'root'` for singletons
+   - Use `inject()` function over constructor injection
+   - Keep services focused on single responsibility
+   - Use InjectionToken for non-class dependencies
+   - Prevent feature module imports where needed
+   - Scope services to components when appropriate
+
+2. MUST follow state management patterns
+   - Pure and predictable state transformations
+   - Observable streams with clear purpose
+   - Proper error handling and completion
+   - Use async pipe in templates
+   - Expose Subjects as Observables
+   - Cache API calls with shareReplay
+   - Avoid nested subscriptions
+   - Use RxJS operators for stream combination
+
+### TypeScript Standards
+1. MUST use strict type checking
+   - Enable strict mode in tsconfig.json
+   - No `any` types (use `unknown` if needed)
+   - Proper interface definitions
+   - Leverage type inference
+   - Explicit return types on functions
+   - Use literal union types for constraints
+   - Force consistent casing in file names
+
+2. MUST follow code organization
+   - Feature-based directory structure
+   - Consistent file naming
+   - Clear separation of concerns
+   - Proper export/import patterns
+   - Group imports by category
+   - Use index files for exports
+   - Implement lazy loading
+   - Keep environment configurations separate
+
+### Performance Optimization
+1. MUST follow performance best practices
+   - Use lazy loading for routes
+   - Implement proper trackBy functions
+   - Cache expensive computations
+   - Avoid method calls in templates
+   - Use OnPush change detection
+   - Optimize bundle size
+   - Use webpack-bundle-analyzer
+   - Implement proper tree-shaking
+
+### Security Best Practices
+1. MUST implement security measures
+   - Use DomSanitizer for untrusted HTML
+   - Implement proper XSS protection
+   - Use HttpClient for API calls
+   - Sanitize user inputs
+   - Follow OWASP guidelines
+   - Use secure attribute bindings
+   - Implement proper CSP
+   - Handle errors securely
+
+## Exercise-Specific Rules
+
+### Exercise 1: Async Operations
+- Use async pipe exclusively
+- Implement proper subscription management
+- Use template reference variables correctly
+- Apply RxJS tap operator appropriately
+
+### Exercise 2: Reactive Programming
+- Implement Observable swapping pattern
+- Use map operator effectively
+- Proper ng-container usage
+- Clear stream management
+
+### Exercise 3: Forms & Pipes
+- Use Reactive Forms exclusively
+- Implement custom pipe correctly
+- Combine Observable streams properly
+- Handle dynamic HTML safely
+
+### Exercise 4: Advanced RxJS
+- Proper switchMap implementation
+- Effective combineLatest usage
+- Subject implementation for actions
+- Handle dynamic stream combinations
+
+### Exercise 5: Component Architecture
+- Clean component refactoring
+- Implement two-way binding correctly
+- Use Input/Output properly
+- Clear component communication
+
+### Exercise 6: Custom Directives
+- Proper directive implementation
+- Effective selector usage
+- Use host bindings in decorator
+- Handle DOM events correctly
+
+### Exercise 7: Content Projection
+- Implement multi-slot projection
+- Create reusable component patterns
+- Handle content initialization
+- Manage projected content lifecycle
+
+## Solution Validation Rules
+1. MUST pass all type checks
+2. MUST follow specified patterns
+3. MUST use required operators/features
+4. MUST implement proper error handling
+5. MUST follow performance best practices
+
+## Development Process
+1. MUST use Angular CLI commands
+2. MUST maintain consistent formatting
+3. MUST include proper documentation
+4. MUST follow Git commit conventions
+5. MUST implement proper testing

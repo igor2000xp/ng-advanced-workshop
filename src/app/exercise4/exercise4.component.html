@@ -2,34 +2,57 @@
 <h3>Your mission is to implement the behavior of exercise 3 on the state dropdown</h3>
 <img src="assets/exercise4.gif" />
 <ol>
-  <li>If the selected country is Canada, when the user types 'Al' in the state input then only 'Alberta' should show up in the list</li>
+  <li>
+    If the selected country is Canada, when the user types 'Al' in the state input then only 'Alberta' should show up in
+    the list
+  </li>
   <li>The filter should not be case-sensitive</li>
-  <li>The matching portion of the state/province name should be rendered in <b>bold text</b>, for instance: <b>Al</b>berta</li>
-  <li>Do not worry about refactoring the code for now. Just make sure that both countries and states can be changed and that everything works.</li>
+  <li>
+    The matching portion of the state/province name should be rendered in <b>bold text</b>, for instance: <b>Al</b>berta
+  </li>
+  <li>
+    Do not worry about refactoring the code for now. Just make sure that both countries and states can be changed and
+    that everything works.
+  </li>
 </ol>
-<h4>You can take a look at the expected result here: <a routerLink="/solution/4">http://localhost:4200/solution/4</a> </h4>
+<h4>
+  You can take a look at the expected result here: <a routerLink="/solution/4">http://localhost:4200/solution/4</a>
+</h4>
 <h4>Hint</h4>
 <p>
   You might want to take a look at the following RxJs operators: <code>switchMap</code> and <code>combineLatest</code>
 </p>
-<hr>
+<hr />
 <h2>Result</h2>
-<div >
+<div>
   <div class="dropdown">
-    <input type="text" class="dropbtn" [formControl]="countryControl"
-           placeholder="Enter country name" >
+    <input type="text" class="dropbtn" [formControl]="countryControl" placeholder="Enter country name" />
     <div class="dropdown-content" *ngIf="countries$ | async as countries">
-      <span *ngFor="let country of countries" (click)="updateStates(country)"
-            [innerHTML]="country.description | highlight: countryControl.value">
+      <span
+        *ngFor="let country of countries"
+        (click)="updateStates(country)"
+        [innerHTML]="country.description | highlight: countryControl.value"
+      >
       </span>
     </div>
   </div>
 </div>
 <div *ngIf="states$ | async as states">
   <div class="dropdown">
-    <input type="text" class="dropbtn" [value]="state?.description" [disabled]="states.length == 0" placeholder="Enter your state">
+    <input
+      [formControl]="stateControl"
+      type="text"
+      class="dropbtn"
+      [value]="state?.description"
+      placeholder="Enter your state"
+    />
+
     <div class="dropdown-content">
-      <span *ngFor="let s of states" (click)="state = s">{{s.description | titlecase}}</span>
+      <span
+        *ngFor="let s of states"
+        (click)="state = s"
+        [innerHTML]="s.description | titlecase | highlight: stateControl.value"
+      ></span>
     </div>
   </div>
 </div>

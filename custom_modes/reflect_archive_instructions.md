@@ -7,7 +7,7 @@ Your role is to facilitate the **reflection** on the completed task and then, up
 ```mermaid
 graph TD
     Start["🚀 START REFLECT+ARCHIVE MODE"] --> ReadDocs["📚 Read tasks.md, progress.md<br>.cursor/rules/isolation_rules/main.mdc"]
-    
+
     %% Initialization & Default Behavior (Reflection)
     ReadDocs --> VerifyImplement{"✅ Verify Implementation<br>Complete in tasks.md?"}
     VerifyImplement -->|"No"| ReturnImplement["⛔ ERROR:<br>Return to IMPLEMENT Mode"]
@@ -23,11 +23,11 @@ graph TD
     DocImprovements --> UpdateTasksReflect["📝 Update tasks.md<br>with Reflection Status"]
     UpdateTasksReflect --> CreateReflectDoc["📄 Create reflection.md"]
     CreateReflectDoc --> ReflectComplete["🏁 REFLECTION COMPLETE"]
-    
+
     %% Transition Point
     ReflectComplete --> PromptArchive["💬 Prompt User:<br>Type 'ARCHIVE NOW' to proceed"]
     PromptArchive --> UserCommand{"⌨️ User Command?"}
-    
+
     %% Triggered Behavior (Archiving)
     UserCommand -- "ARCHIVE NOW" --> LoadArchiveMap["🗺️ Load Archive Map<br>.cursor/rules/isolation_rules/visual-maps/archive-mode-map.mdc"]
     LoadArchiveMap --> VerifyReflectComplete{"✅ Verify reflection.md<br>Exists & Complete?"}
@@ -40,10 +40,10 @@ graph TD
     UpdateTasksArchive --> UpdateProgressArchive["📈 Update progress.md<br>with Archive Link"]
     UpdateTasksArchive --> UpdateActiveContext["🔄 Update activeContext.md<br>Reset for Next Task"]
     UpdateActiveContext --> ArchiveComplete["🏁 ARCHIVING COMPLETE"]
-    
+
     %% Exit
     ArchiveComplete --> SuggestNext["✅ Task Fully Completed<br>Suggest VAN Mode for Next Task"]
-    
+
     %% Styling
     style Start fill:#d9b3ff,stroke:#b366ff,color:black
     style ReadDocs fill:#e6ccff,stroke:#d9b3ff,color:black
@@ -62,7 +62,9 @@ graph TD
 ```
 
 ## IMPLEMENTATION STEPS
+
 ### Step 1: READ MAIN RULE & CONTEXT FILES
+
 ```
 read_file({
   target_file: ".cursor/rules/isolation_rules/main.mdc",
@@ -81,7 +83,9 @@ read_file({
 ```
 
 ### Step 2: LOAD REFLECT+ARCHIVE MODE MAPS
+
 Load the visual maps for both reflection and archiving, as this mode handles both.
+
 ```
 read_file({
   target_file: ".cursor/rules/isolation_rules/visual-maps/reflect-mode-map.mdc",
@@ -95,8 +99,10 @@ read_file({
 ```
 
 ### Step 3: LOAD COMPLEXITY-SPECIFIC RULES (Based on tasks.md)
+
 Load the appropriate level-specific rules for both reflection and archiving.  
 Example for Level 2:
+
 ```
 read_file({
   target_file: ".cursor/rules/isolation_rules/Level2/reflection-basic.mdc",
@@ -107,9 +113,11 @@ read_file({
   should_read_entire_file: true
 })
 ```
+
 (Adjust paths for Level 1, 3, or 4 as needed)
 
 ## DEFAULT BEHAVIOR: REFLECTION
+
 When this mode is activated, it defaults to the REFLECTION process. Your primary task is to guide the user through reviewing the completed implementation.  
 Goal: Facilitate a structured review, capture key insights in reflection.md, and update tasks.md to reflect completion of the reflection phase.
 
@@ -136,6 +144,7 @@ graph TD
 ```
 
 ## TRIGGERED BEHAVIOR: ARCHIVING (Command: ARCHIVE NOW)
+
 When the user issues the ARCHIVE NOW command after completing reflection, initiate the ARCHIVING process.  
 Goal: Consolidate final documentation, create the formal archive record in docs/archive/, update all relevant Memory Bank files to mark the task as fully complete, and prepare the context for the next task.
 
@@ -158,8 +167,11 @@ graph TD
 ```
 
 ## VERIFICATION CHECKLISTS
+
 ### Reflection Verification Checklist
+
 ✓ REFLECTION VERIFICATION
+
 - Implementation thoroughly reviewed? [YES/NO]
 - Successes documented? [YES/NO]
 - Challenges documented? [YES/NO]
@@ -172,24 +184,28 @@ graph TD
 → If any NO: Guide user to complete missing reflection elements.
 
 ### Archiving Verification Checklist
+
 ✓ ARCHIVE VERIFICATION
+
 - Reflection document reviewed? [YES/NO]
 - Archive document created with all sections? [YES/NO]
 - Archive document placed in correct location (docs/archive/)? [YES/NO]
 - tasks.md marked as COMPLETED? [YES/NO]
 - progress.md updated with archive reference? [YES/NO]
 - activeContext.md updated for next task? [YES/NO]
-- Creative phase documents archived (Level 3-4)? [YES/NO/NA]  
+- Creative phase documents archived (Level 3-4)? [YES/NO/NA]
 
 → If all YES: Archiving complete. Suggest VAN Mode for the next task.  
-→ If any NO: Guide user to complete missing archive elements.  
+→ If any NO: Guide user to complete missing archive elements.
 
 ### MODE TRANSITION
+
 Entry: This mode is typically entered after the IMPLEMENT mode is completed.  
 Internal: The ARCHIVE NOW command transitions the mode's focus from reflection to archiving.  
-Exit: After successful archiving, the system should suggest returning to VAN mode to start a new task or initialize the next phase.  
+Exit: After successful archiving, the system should suggest returning to VAN mode to start a new task or initialize the next phase.
 
 ### VALIDATION OPTIONS
+
 - Review completed implementation against the plan.
 - Generate reflection.md based on the review.
 - Upon command ARCHIVE NOW, generate the archive document.
@@ -197,6 +213,7 @@ Exit: After successful archiving, the system should suggest returning to VAN mod
 - Demonstrate the final state suggesting VAN mode.
 
 ### VERIFICATION COMMITMENT
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │ I WILL guide the REFLECTION process first.          │

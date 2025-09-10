@@ -1,11 +1,10 @@
-import {Directive, HostBinding, HostListener, Input} from '@angular/core';
-import {Observable} from 'rxjs';
+import { Directive, HostBinding, HostListener, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Directive({
-  selector: '[action][textWhenDone]'
+  selector: '[action][textWhenDone]',
 })
 export class StateButtonDirective<T> {
-
   @Input()
   action: Observable<T>;
 
@@ -22,6 +21,6 @@ export class StateButtonDirective<T> {
   @HostListener('click')
   triggerAction() {
     this.buttonText = this.textWhenWorking;
-    this.action.subscribe(() => this.buttonText = this.textWhenDone);
+    this.action.subscribe(() => (this.buttonText = this.textWhenDone));
   }
 }
