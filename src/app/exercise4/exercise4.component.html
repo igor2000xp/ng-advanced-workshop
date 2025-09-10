@@ -40,14 +40,19 @@
 <div *ngIf="states$ | async as states">
   <div class="dropdown">
     <input
+    [formControl]="stateControl"
       type="text"
       class="dropbtn"
       [value]="state?.description"
-      [disabled]="states.length == 0"
       placeholder="Enter your state"
-    />
+      />
+      <!-- [disabled]="states.length == 0" -->
     <div class="dropdown-content">
-      <span *ngFor="let s of states" (click)="state = s">{{ s.description | titlecase }}</span>
+      <span
+        *ngFor="let s of states"
+        (click)="state = s"
+        [innerHTML]="s.description | titlecase | highlight: stateControl.value"
+      ></span>
     </div>
   </div>
 </div>
